@@ -1,18 +1,6 @@
-"use-client";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import queryClient from "@/lib/react-query";
+import "../theme/globals.css";
 import ReactQueryProvider from "@/lib/ReactQueryProvider";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import { geistMono, geistSans } from "@/theme/fonts";
 
 export default function RootLayout({
   children,
