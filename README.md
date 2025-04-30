@@ -50,26 +50,107 @@ This will:
 
 > The backend connects to MongoDB via `MONGODB_URI=mongodb://mongo:27017/apartments`
 
+
+
 ---
 
-### ⚙️ Running the Frontend (Optional if not in Docker)
+##  API Documentation
 
-If you are running frontend separately:
 
-```bash
-cd frontend
-npm install
-npm run dev
+
+### 📄 Endpoints
+
+#### `GET /apartments`
+
+Returns a list of all apartments.
+
+**Query Parameters:**
+
+| Name   | Type   | Description                                      |
+|--------|--------|--------------------------------------------------|
+| search | string | (Optional) Filters apartments by name, unitNumber, or project |
+
+**Example:**
+```http
+GET /apartments?search=Marassi
 ```
 
-> Frontend: `http://localhost:3001`  
-> Backend API: `http://localhost:3000`
-
-Make sure to set the correct API base URL in `.env.local`:
-
-```env
-API_BASE_URL=http://localhost:3000
+**Response:**
+```json
+[
+  {
+    "_id": "123",
+    "name": "Sea View Apartment",
+    "unitNumber": "B203",
+    "project": "Marassi",
+    "price": 1200000,
+    "description": "Luxury beach view",
+    "createdAt": "2024-01-01T12:00:00.000Z",
+    "updatedAt": "2024-01-01T12:00:00.000Z"
+  }
+]
 ```
+
+---
+
+#### `GET /apartments/:id`
+
+Fetches a specific apartment by ID.
+
+**Example:**
+```http
+GET /apartments/664c70ff5c0f8d034fa17654
+```
+
+**Response:**
+```json
+{
+  "_id": "664c70ff5c0f8d034fa17654",
+  "name": "Villa 18",
+  "unitNumber": "21",
+  "project": "Shorouk",
+  "price": 1211111,
+  "description": "Corner unit with garden",
+  "createdAt": "2024-01-05T15:22:00.000Z",
+  "updatedAt": "2024-01-05T15:22:00.000Z"
+}
+```
+
+---
+
+#### `POST /apartments`
+
+Adds a new apartment.
+
+**Request Body:**
+
+```json
+{
+  "name": "New Apartment",
+  "unitNumber": "77B",
+  "project": "Palm Hills",
+  "price": 1300000,
+  "description": "Ground floor unit"
+}
+```
+
+**Response:**
+
+```json
+{
+  "_id": "6651bc4a69b0322e886ad005",
+  "name": "New Apartment",
+  "unitNumber": "77B",
+  "project": "Palm Hills",
+  "price": 1300000,
+  "description": "Ground floor unit",
+  "createdAt": "2024-05-01T13:00:00.000Z",
+  "updatedAt": "2024-05-01T13:00:00.000Z"
+}
+```
+
+
+
 
 ---
 
@@ -78,31 +159,54 @@ API_BASE_URL=http://localhost:3000
 ```
 appartment-app/
 │
-├── backend/               # NestJS backend
+├── backend/                         # NestJS Backend API
 │   ├── src/
-│   ├── .env
-│   └── Dockerfile
+│   │   ├── apartment/               # Apartment module
+│   │   │   ├── dto/                 # Data Transfer Objects (DTOs)
+│   │   │   ├── schemas/            # Mongoose schema definitions
+│   │   │   ├── apartment.controller.ts
+│   │   │   ├── apartment.service.ts
+│   │   │   └── apartments.module.ts
+│   │   ├── app.controller.ts        # Root controller 
+│   │   ├── app.module.ts            # Root Nest module
+│   │   ├── app.service.ts           # Root app logic
+│   │   └── main.ts                  # Entry point
+│   ├── .env                         # Environment config for MongoDB URI
+│   └── Dockerfile                   # Docker setup for backend
 │
-├── frontend/              # Next.js frontend
+├── frontend/                        # Next.js Frontend App
 │   ├── src/
-│   └── .env.local
+│   │   ├── app/                     # App router structure
+│   │   │   ├── apartments/[id]/     # Apartment detail page
+│   │   │   │   └── page.tsx
+│   │   │   └── page.tsx             # Listing page
+│   │   ├── components/              # Reusable UI components
+│   │   │   ├── ApartmentCard.tsx
+│   │   │   ├── AddApartmentModal.tsx
+│   │   │   ├── FormInput.tsx
+│   │   │   ├── Loader.tsx
+│   │   │   ├── Navbar.tsx
+│   │   │   └── SearchBar.tsx
+│   │   ├── hooks/                   # Custom React hooks
+│   │   │   ├── useAddApartment.ts
+│   │   │   ├── useApartmentById.ts
+│   │   │   ├── useApartments.ts
+│   │   │   └── useDebounce.ts
+│   │   ├── lib/                     # API clients and React Query setup
+│   │   │   ├── axios.ts
+│   │   │   ├── react-query.ts
+│   │   │   └── ReactQueryProvider.tsx
+│   │   ├── theme/                   # Styling and design 
+│   │   │   ├── fonts.ts
+│   │   │   └── globals.css
+│   │   └── types/                   # Shared TypeScript interfaces
+│   │       └── apartment.ts
+│   └── .env.local                   # Frontend environment config
 │
-├── docker-compose.yml     # Combined backend + DB config
+├── docker-compose.yml              # Docker config to run backend + DB
+└── README.md                       # Project documentation
+
 ```
-
-
-
----
-
-## 📮 API Endpoints
-
-| Method | Endpoint          | Description           |
-|--------|-------------------|-----------------------|
-| GET    | `/apartments`     | Get all apartments    |
-| GET    | `/apartments/:id` | Get apartment by ID   |
-| POST   | `/apartments`     | Add a new apartment   |
-
----
 
 ## 👨‍💻 Author
 
