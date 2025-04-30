@@ -3,6 +3,7 @@
 import React from "react";
 import { useParams } from "next/navigation";
 import { useFetchApartmentById } from "@/hooks/useApartmentById";
+import Loader from "@/components/Loader";
 
 const Apartment = () => {
   const params = useParams();
@@ -11,9 +12,7 @@ const Apartment = () => {
   const { data: apartment, isLoading, isError } = useFetchApartmentById(id);
 
   if (isLoading) {
-    return (
-      <p className="p-6 text-center text-gray-500">Loading apartment...</p>
-    );
+    return <Loader />;
   }
 
   if (isError || !apartment) {
@@ -23,18 +22,34 @@ const Apartment = () => {
   }
 
   return (
-    <div className="p-6 max-w-4xl mx-auto">
-      <h1 className="text-3xl font-bold mb-4">{apartment.name}</h1>
-      <p className="text-gray-600 mb-2">Unit: {apartment.unitNumber}</p>
-      {apartment.project && (
-        <p className="text-gray-500 mb-4">Project: {apartment.project}</p>
-      )}
+    <main className="p-6 flex justify-center">
+      <div className="bg-white rounded-xl shadow-md p-6 max-w-2xl w-full">
+        <h1 className=" text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+          {apartment.name}
+        </h1>
 
-      <p className="text-green-600 text-lg font-semibold mb-6">
-        EGP {apartment.price.toLocaleString()}
-      </p>
-      {apartment.description && <p className="mb-4">{apartment.description}</p>}
-    </div>
+        <div className="text-sm text-gray-600 mb-4">
+          <p className="mb-1">
+            <span className="font-medium text-gray-700">Unit:</span>{" "}
+            {apartment.unitNumber}
+          </p>
+          {apartment.project && (
+            <p className="mb-1">
+              <span className="font-medium text-gray-700">Project:</span>{" "}
+              {apartment.project}
+            </p>
+          )}
+        </div>
+
+        <p className="text-purple-600 text-xl font-semibold mb-6">
+          EGP {apartment.price.toLocaleString()}
+        </p>
+
+        {apartment.description && (
+          <div className="text-gray-700">{apartment.description}</div>
+        )}
+      </div>
+    </main>
   );
 };
 

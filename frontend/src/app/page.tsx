@@ -2,14 +2,13 @@
 
 import { useFetchApartments } from "@/hooks/useApartments";
 import ApartmentCard from "@/components/ApartmentCard";
+import Loader from "@/components/Loader";
 
 export default function Home() {
   const { data: apartments, isLoading, isError } = useFetchApartments();
 
   if (isLoading) {
-    return (
-      <p className="p-6 text-center text-gray-500">Loading apartments...</p>
-    );
+    return <Loader />;
   }
 
   if (isError) {
