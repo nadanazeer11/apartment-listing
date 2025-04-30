@@ -10,6 +10,7 @@ Built with **NestJS**, **MongoDB**, **Next.js**, **React Query**, **TailwindCSS*
 - View all apartments
 - View apartment details
 - Add a new apartment
+- Search for apartment by name , unit number or project
 - Responsive design for mobile and desktop
 ---
 
