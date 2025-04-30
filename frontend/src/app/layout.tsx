@@ -1,3 +1,4 @@
+import Navbar from "@/components/Navbar";
 import "../theme/globals.css";
 import ReactQueryProvider from "@/lib/ReactQueryProvider";
 import { geistMono, geistSans } from "@/theme/fonts";
@@ -12,7 +13,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ReactQueryProvider>{children}</ReactQueryProvider>
+        <ReactQueryProvider>
+          <Navbar />
+          {children}
+        </ReactQueryProvider>
       </body>
     </html>
   );
