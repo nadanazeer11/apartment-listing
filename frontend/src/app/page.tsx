@@ -6,17 +6,17 @@ import ApartmentCard from "@/components/ApartmentCard";
 export default function Home() {
   const { data: apartments, isLoading, isError } = useFetchApartments();
 
-  // if (isLoading) {
-  //   return (
-  //     <p className="p-6 text-center text-gray-500">Loading apartments...</p>
-  //   );
-  // }
+  if (isLoading) {
+    return (
+      <p className="p-6 text-center text-gray-500">Loading apartments...</p>
+    );
+  }
 
-  // if (isError) {
-  //   return (
-  //     <p className="p-6 text-center text-red-500">Error loading apartments.</p>
-  //   );
-  // }
+  if (isError) {
+    return (
+      <p className="p-6 text-center text-red-500">Error loading apartments.</p>
+    );
+  }
 
   return (
     <div className="p-6">
