@@ -33,7 +33,7 @@ Built with **NestJS**, **MongoDB**, **Next.js**, **React Query**, **TailwindCSS*
 ### 📁 Clone the repo
 
 ```bash
-git clone https://github.com/your-username/apartment-app.git
+git clone https://github.com/nadanazeer11/apartment-listing.git
 cd apartment-app
 ```
 
