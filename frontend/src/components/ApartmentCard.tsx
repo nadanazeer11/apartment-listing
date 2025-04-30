@@ -2,7 +2,6 @@
 
 import { Apartment } from "@/types/apartment";
 import Link from "next/link";
-import Image from "next/image";
 
 type Props = {
   apartment: Apartment;

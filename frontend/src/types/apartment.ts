@@ -8,3 +8,8 @@ export type Apartment = {
   createdAt: string;
   updatedAt: string;
 };
+
+export type CreateApartmentDto = Pick<
+  Apartment,
+  "name" | "unitNumber" | "project" | "price" | "description"
+>;
