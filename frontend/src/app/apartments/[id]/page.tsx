@@ -34,18 +34,6 @@ const Apartment = () => {
         EGP {apartment.price.toLocaleString()}
       </p>
       {apartment.description && <p className="mb-4">{apartment.description}</p>}
-      {apartment.images && apartment.images.length > 0 && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {apartment.images.map((img, idx) => (
-            <img
-              key={idx}
-              src={img}
-              alt={`Apartment Image ${idx}`}
-              className="rounded-lg"
-            />
-          ))}
-        </div>
-      )}
     </div>
   );
 };

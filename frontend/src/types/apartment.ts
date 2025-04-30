@@ -5,7 +5,6 @@ export type Apartment = {
   project?: string;
   price: number;
   description?: string;
-  images?: string[];
   createdAt: string;
   updatedAt: string;
 };

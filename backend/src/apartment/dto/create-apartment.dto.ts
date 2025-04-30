@@ -17,8 +17,4 @@ export class CreateApartmentDto {
   @IsOptional()
   @IsString()
   description?: string;
-
-  @IsOptional()
-  @IsArray()
-  images?: string[];
 }

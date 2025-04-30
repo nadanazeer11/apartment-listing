@@ -19,9 +19,6 @@ export class Apartment {
 
   @Prop()
   description?: string;
-
-  @Prop({ type: [String], default: [] })
-  images?: string[];
 }
 
 export const ApartmentSchema = SchemaFactory.createForClass(Apartment);
