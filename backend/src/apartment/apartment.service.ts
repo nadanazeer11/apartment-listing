@@ -16,8 +16,15 @@ export class ApartmentService {
     return apartment.save();
   }
 
-  async findAll(): Promise<Apartment[]> {
-    return this.apartmentModel.find().exec();
+  async findAll(search?: string): Promise<Apartment[]> {
+    const regex = new RegExp(search ?? '', 'i');
+    const query = search
+      ? {
+          $or: [{ name: regex }, { unitNumber: regex }, { project: regex }],
+        }
+      : {};
+
+    return this.apartmentModel.find(query).sort({ createdAt: -1 }).exec();
   }
 
   async findOne(id: string): Promise<Apartment> {
