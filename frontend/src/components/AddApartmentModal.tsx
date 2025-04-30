@@ -30,13 +30,10 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema>;
 
-const AddApartmentModal = ({
-  isAddApartmentModalOpen,
-  setIsAddApartmentModalOpen,
-}: Props) => {
+const AddApartmentModal = (props: Props) => {
+  const { isAddApartmentModalOpen, setIsAddApartmentModalOpen } = props;
   const closeModal = () => {
     reset();
-
     setIsAddApartmentModalOpen(false);
   };
 
