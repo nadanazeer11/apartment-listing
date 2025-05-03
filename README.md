@@ -45,9 +45,10 @@ docker compose up --build
 ```
 
 This will:
-- Build the **backend**
+- Build the **backend** and **frontend**
 - Start a **MongoDB container**
-- App will run at: `http://localhost:3000`
+- BE will run at: `http://localhost:3000`
+- FE will run at: `http://localhost:3001`
 
 > The backend connects to MongoDB via `MONGODB_URI=mongodb://mongo:27017/apartments`
 
