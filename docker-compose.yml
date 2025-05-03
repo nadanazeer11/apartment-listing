@@ -13,7 +13,7 @@ services:
   backend:
     build:
       context: ./backend
-      dockerfile: Dockerfile # optional if default
+      dockerfile: Dockerfile
     container_name: backend
     ports:
       - "3001:3001"
@@ -26,7 +26,7 @@ services:
   frontend:
     build:
       context: ./frontend
-      dockerfile: Dockerfile # optional if default
+      dockerfile: Dockerfile
     container_name: frontend
     ports:
       - "3000:3000"
