@@ -23,13 +23,14 @@ export const useFetch = <T, Variables = object>(
     ...options,
   });
 };
+
 export const usePost = <T, Variables = object>(
   url: string,
   options?: UseMutationOptions<AxiosResponse<T>, Error, Variables>
 ) => {
   return useMutation<AxiosResponse<T>, Error, Variables>({
     mutationKey: [url],
-    mutationFn: (body) => requestProcessor.post<T>(url, body),
+    mutationFn: (body) => requestProcessor.post<T, Variables>(url, body),
     ...options,
   });
 };
