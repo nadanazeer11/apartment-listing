@@ -13,8 +13,11 @@ export const requestProcessor = {
     return response;
   },
 
-  post: async <T>(url: string, body: any): Promise<AxiosResponse<T>> => {
-    const response = await apiClient.post<T>(url, body);
+  post: async <TResponse, TRequest>(
+    url: string,
+    body: TRequest
+  ): Promise<AxiosResponse<TResponse>> => {
+    const response = await apiClient.post<TResponse>(url, body);
     return response;
   },
 };
